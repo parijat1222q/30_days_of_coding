@@ -13,3 +13,29 @@ class Solution:
             count += 1 if num == candidate else -1
 
         return candidate
+
+
+
+You are given a 0-indexed 2D integer matrix grid of size n * n with values in the range [1, n2]. Each integer appears exactly once except a which appears twice and b which is missing. The task is to find the repeating and missing numbers a and b.
+Return a 0-indexed integer array ans of size 2 where ans[0] equals to a and ans[1] equals to b.
+
+
+class Solution(object):
+    def findMissingAndRepeatedValues(self, grid):
+        n = len(grid)
+        nums = [grid[i][j] for i in range(n) for j in range(n)]
+        sum_grid = sum(nums)
+        sum_squares_grid = sum(x * x for x in nums)
+        
+        total_sum = (n * n * (n * n + 1)) // 2
+        total_sum_squares = (n * n * (n * n + 1) * (2 * n * n + 1)) // 6
+        
+        diff_sum = total_sum - sum_grid  
+        diff_squares = total_sum_squares - sum_squares_grid  
+        sum_ab = diff_squares // diff_sum
+        
+        a = (sum_ab - diff_sum) // 2
+        b = a + diff_sum
+        
+        return [a, b]
+        
