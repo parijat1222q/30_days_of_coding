@@ -53,7 +53,8 @@ int maxProfit(int* p, int n)
         if (p[i] < minP) 
         {
             minP = p[i];          
-        } else if (p[i] - minP > maxP) 
+        } 
+        else if (p[i] - minP > maxP) 
         {
             maxP = p[i] - minP;   
         }
