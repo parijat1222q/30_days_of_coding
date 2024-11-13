@@ -1,0 +1,80 @@
+iven a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+
+#include <stdio.h>
+
+int singleNumber(int* nums, int numsSize) 
+{
+    int single = 0;
+    for (int i = 0; i < numsSize; i++) 
+    {
+        single ^= nums[i];
+    }
+    return single;
+}
+
+int main() 
+{
+    int numsSize;
+    printf("Enter the number of elements: ");
+    scanf("%d", &numsSize);
+
+    int nums[numsSize];
+    printf("Enter the elements: ");
+    for (int i = 0; i < numsSize; i++) 
+    {
+        scanf("%d", &nums[i]);
+    }
+
+    int result = singleNumber(nums, numsSize);
+    printf("The single number is: %d\n", result);
+
+    return 0;
+}
+
+
+
+
+
+You are given an array prices where prices[i] is the price of a given stock on the ith day.
+You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+
+#include <stdio.h>
+
+int maxProfit(int* p, int n) 
+{
+    int minP = __INT_MAX__, maxP = 0;
+    for (int i = 0; i < n; i++) 
+    {
+        if (p[i] < minP) 
+        {
+            minP = p[i];          
+        } else if (p[i] - minP > maxP) 
+        {
+            maxP = p[i] - minP;   
+        }
+    }
+    return maxP;
+}
+
+int main() 
+{
+    int n;
+    printf("Enter number of days: ");
+    scanf("%d", &n);
+
+    int p[n];
+    printf("Enter prices: ");
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &p[i]);
+    }
+
+    int result = maxProfit(p, n);
+    printf("Max profit: %d\n", result);
+
+    return 0;
+}
