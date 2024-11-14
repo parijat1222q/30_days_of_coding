@@ -1,0 +1,40 @@
+Given an integer array nums, find the subarray with the largest sum, and return its sum.
+
+
+  from typing import List
+
+class Solution:
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_sum = float('-inf')  
+        current_sum = 0          
+        
+        for num in nums:
+            current_sum += num       
+            max_sum = max(max_sum, current_sum)  
+            if current_sum < 0:
+                current_sum = 0    
+        
+        return max_sum
+
+
+
+
+Implement pow(x, n), which calculates x raised to the power n (i.e., x^n).
+
+          
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        if n < 0:
+            x = 1 / x
+            n = -n
+
+        result = 1
+        current_product = x
+
+        while n > 0:
+            if n % 2 == 1:
+                result *= current_product
+            current_product *= current_product
+            n //= 2
+
+        return result
