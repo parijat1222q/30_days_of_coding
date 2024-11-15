@@ -1,0 +1,50 @@
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]). 
+Find two lines that together with the x-axis form a container, such that the container contains the most water. Return the maximum amount of water a container can store.
+Notice that you may not slant the container.
+
+
+from typing import List
+
+class Solution:
+    def maxArea(self, height: List[int]) -> int:
+        left, right = 0, len(height) - 1
+        max_area = 0
+
+        while left < right:
+            width = right - left
+            current_height = min(height[left], height[right])
+            current_area = width * current_height
+            max_area = max(max_area, current_area)
+            
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return max_area
+
+
+
+
+
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+You must solve this problem without using the library's sort function.
+
+          
+from typing import List
+
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+       
+        low, mid, high = 0, 0, len(nums) - 1
+
+        while mid <= high:
+            if nums[mid] == 0:
+                nums[low], nums[mid] = nums[mid], nums[low]
+                low += 1
+                mid += 1
+            elif nums[mid] == 1:
+                mid += 1
+            else:  
+                nums[mid], nums[high] = nums[high], nums[mid]
+                high -= 1
